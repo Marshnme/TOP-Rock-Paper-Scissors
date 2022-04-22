@@ -3,7 +3,7 @@
      let humanScore = 0;
      let compScore = 0; 
 
-function Game(rounds){    
+function game(rounds){    
 
     let moves = ["rock","paper","scissors"]
 
@@ -26,7 +26,7 @@ function Game(rounds){
 
 
 
-function Round(human,comp){
+function round(human,comp){
 
     if(human != "rock" && human != "paper" && human != "scissors"){
         return("please pick a valid weapon")
@@ -49,4 +49,4 @@ function Round(human,comp){
 }
 
 
-Game(5)
+game(5)
