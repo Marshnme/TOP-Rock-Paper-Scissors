@@ -10,10 +10,10 @@ function Game(rounds){
 
     for(let i = 0; i<rounds;i++){
 
-        let humanTurn = prompt("Pick Your Weapon").toLowerCase()
-         let compInput = Math.floor(Math.random() * 3);
+        let humanInput = prompt("Pick Your Weapon").toLowerCase()
+        let compInput = Math.floor(Math.random() * 3);
 
-        console.log(Round(humanTurn,moves[compInput]))
+        console.log(Round(humanInput,moves[compInput]))
     }
     if(humanScore>compScore){
         console.log("Human wins")
@@ -26,25 +26,25 @@ function Game(rounds){
 
 
 
-function Round(human,comp){
+function Round(humanTurn,compTurn){
 
-    if(human != "rock" && human != "paper" && human != "scissors"){
+    if(humanTurn != "rock" && humanTurn != "paper" && humanTurn != "scissors"){
         return("please pick a valid weapon")
-    }else if(human === comp){
+    }else if(humanTurn === compTurn){compTurn
         return "You can't pick the same weapon"
-    }else if(human === "scissors" && comp === "paper"){
+    }else if(humanTurn === "scissors" && compTurn === "paper"){
         humanScore++
-        return(`Human wins with ${human}, Score: Human - ${humanScore} Computer - ${compScore}`)
-    }else if(human === "rock" && comp === "scissors"){
+        return(`Human wins with ${humanTurn}, Score: Human - ${humanScore} Computer - ${compScore}`)
+    }else if(humanTurn === "rock" && compTurn === "scissors"){
         humanScore++
-        return(`Human wins with ${human}, Score: Human - ${humanScore} Computer - ${compScore}`)
+        return(`Human wins with ${humanTurn}, Score: Human - ${humanScore} Computer - ${compScore}`)
     }
-    else if(human === "paper" && comp === "rock"){
+    else if(humanTurn === "paper" && compTurn === "rock"){
         humanScore++
-        return(`Human wins with ${human}, Score: Human - ${humanScore} Computer - ${compScore}`)
+        return(`Human wins with ${humanTurn}, Score: Human - ${humanScore} Computer - ${compScore}`)
     }else{
         compScore++
-            return(`Computer wins with ${comp}, Score: Human - ${humanScore} Computer - ${compScore}`)
+            return(`Computer wins with ${compTurn}, Score: Human - ${humanScore} Computer - ${compScore}`)
     }
 }
 
