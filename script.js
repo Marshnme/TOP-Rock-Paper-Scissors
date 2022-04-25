@@ -1,52 +1,50 @@
+// Initializing scores
+let humanScore = 0;
+let compScore = 0; 
+
+// getting all buttons and adding event listeners 
+let buttons = document.querySelectorAll("button")
+ buttons.forEach(button =>{
+     button.addEventListener("mousedown",playRound)
+     button.addEventListener("mousedown",computerTurn)
+ })
 
 
-     let humanScore = 0;
-     let compScore = 0; 
+function playRound(e){
+    const currentButton = document.querySelector(`button[id=${e.toElement.id}`)
+    const scoreDisplay = document.querySelector(".score-display")
+    const currentMove = document.querySelector('.move-display')
+    let computerTurn = e.view.computerTurn();
 
-function game(rounds){    
+    console.log("comp turn",computerTurn)
+    console.log("human turn", currentButton.id)
 
-    let moves = ["rock","paper","scissors"]
-
-
-    for(let i = 0; i<rounds;i++){
-
-        let humanInput = prompt("Pick Your Weapon").toLowerCase()
-        let compInput = Math.floor(Math.random() * 3);
-
-        console.log(Round(humanInput,moves[compInput]))
-    }
-    if(humanScore>compScore){
-        console.log("Human wins")
-    }else if(humanScore<compScore){
-        console.log("Computer wins")
-    }else if(humanScore===compScore){
-        console.log("You are equally matched")
-    }
-}
-
-
-
-
-function round(humanTurn,compTurn)
-    if(humanTurn != "rock" && humanTurn != "paper" && humanTurn != "scissors"){
-        return("please pick a valid weapon")
-    }else if(humanTurn === compTurn){compTurn
-        return "You can't pick the same weapon"
-    }else if(humanTurn === "scissors" && compTurn === "paper"){
+    if(currentButton.id === computerTurn){
+        currentMove.textContent = `You both made the same decision...continue`
+    }else if(currentButton.id === "rock" && computerTurn === "scissors"){
         humanScore++
-        return(`Human wins with ${humanTurn}, Score: Human - ${humanScore} Computer - ${compScore}`)
-    }else if(humanTurn === "rock" && compTurn === "scissors"){
+        scoreDisplay.textContent = `Human - ${humanScore}, Computer - ${compScore} `;
+        currentMove.textContent = `Human chose ${currentButton.id}, Computer chose ${computerTurn}`
+    }else if(currentButton.id === "paper" && computerTurn === "rock"){
         humanScore++
-        return(`Human wins with ${humanTurn}, Score: Human - ${humanScore} Computer - ${compScore}`)
+        scoreDisplay.textContent = `Human - ${humanScore}, Computer - ${compScore} `;
+        currentMove.textContent = `Human chose ${currentButton.id}, Computer chose ${computerTurn}`
     }
-    else if(humanTurn === "paper" && compTurn === "rock"){
+    else if(currentButton.id === "scissors" && computerTurn === "paper"){
         humanScore++
-        return(`Human wins with ${humanTurn}, Score: Human - ${humanScore} Computer - ${compScore}`)
+        scoreDisplay.textContent = `Human - ${humanScore}, Computer - ${compScore} `;
+        currentMove.textContent = `Human chose ${currentButton.id}, Computer chose ${computerTurn}`
     }else{
         compScore++
-            return(`Computer wins with ${compTurn}, Score: Human - ${humanScore} Computer - ${compScore}`)
+        scoreDisplay.textContent = `Human - ${humanScore}, Computer - ${compScore} `;
+        currentMove.textContent = `Human chose ${currentButton.id}, Computer chose ${computerTurn}`
     }
 }
 
+// Calculates computer turn
+function computerTurn(e){
+    let moves = ["rock","paper","scissors"]
+    let compInput = moves[Math.floor(Math.random() * 3)];
+    return compInput
+}
 
-game(5)
