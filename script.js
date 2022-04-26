@@ -20,7 +20,8 @@ function restart(){
     moveButtons.forEach(button =>{
         button.classList.toggle('toggle-buttons')
     })
-    scoreDisplay.textContent = "Human - 0, Computer - 0"
+    scoreDisplay.textContent = "Human - 0 | Computer - 0"
+    currentMove.textContent = "Make your move"
     humanScore = 0;
     compScore = 0;
 }
@@ -42,20 +43,20 @@ function playRound(e){
         currentMove.textContent = `You both made the same decision...continue`
     }else if(currentButton.id === "rock" && computerTurn === "scissors"){
         humanScore++
-        scoreDisplay.textContent = `Human - ${humanScore}, Computer - ${compScore} `;
+        scoreDisplay.textContent = `Human - ${humanScore} | Computer - ${compScore} `;
         currentMove.textContent = `Human chose ${currentButton.id}, Computer chose ${computerTurn}`
     }else if(currentButton.id === "paper" && computerTurn === "rock"){
         humanScore++
-        scoreDisplay.textContent = `Human - ${humanScore}, Computer - ${compScore} `;
+        scoreDisplay.textContent = `Human - ${humanScore} | Computer - ${compScore} `;
         currentMove.textContent = `Human chose ${currentButton.id}, Computer chose ${computerTurn}`
     }
     else if(currentButton.id === "scissors" && computerTurn === "paper"){
         humanScore++
-        scoreDisplay.textContent = `Human - ${humanScore}, Computer - ${compScore} `;
+        scoreDisplay.textContent = `Human - ${humanScore} | Computer - ${compScore} `;
         currentMove.textContent = `Human chose ${currentButton.id}, Computer chose ${computerTurn}`
     }else{
         compScore++
-        scoreDisplay.textContent = `Human - ${humanScore}, Computer - ${compScore} `;
+        scoreDisplay.textContent = `Human - ${humanScore} | Computer - ${compScore} `;
         currentMove.textContent = `Human chose ${currentButton.id}, Computer chose ${computerTurn}`
     }
 
