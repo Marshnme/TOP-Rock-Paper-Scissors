@@ -5,7 +5,7 @@ const scoreDisplay = document.querySelector(".score-display")
 const currentMove = document.querySelector('.move-display')
 
 // getting all buttons and adding event listeners 
-let buttons = document.querySelectorAll("button")
+const buttons = document.querySelectorAll("button")
  buttons.forEach(button =>{
      button.addEventListener("mousedown",playRound)
      button.addEventListener("mousedown",computerTurn)
@@ -21,8 +21,6 @@ function computerTurn(e){
 
 function playRound(e){
     let currentButton = document.querySelector(`button[id=${e.toElement.id}`)
-    // const scoreDisplay = document.querySelector(".score-display")
-    // const currentMove = document.querySelector('.move-display')
     let computerTurn = e.view.computerTurn();
 
 
@@ -51,11 +49,22 @@ function playRound(e){
 }
 
 function game(e,computerTurn){
+    let tryAgain = document.createElement('button');
+    tryAgain.textContent = "Play Again?";
+
     let currentButton = document.querySelector(`button[id=${e.toElement.id}`)
     if(humanScore === 5){
         currentMove.textContent = `Human chose ${currentButton.id} and wins`
+        buttons.forEach(item => {
+            item.classList.toggle('toggleButtons')
+        })
+        scoreDisplay.parentElement.appendChild(tryAgain);
     }else if (compScore === 5){
         currentMove.textContent = `Computer chose ${computerTurn} and wins`
+        buttons.forEach(item => {
+            item.classList.toggle('toggleButtons')
+        })
+        scoreDisplay.parentElement.appendChild(tryAgain);
     }
 }
 
