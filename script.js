@@ -1,6 +1,8 @@
 // Initializing scores
 let humanScore = 0;
 let compScore = 0; 
+const scoreDisplay = document.querySelector(".score-display")
+const currentMove = document.querySelector('.move-display')
 
 // getting all buttons and adding event listeners 
 let buttons = document.querySelectorAll("button")
@@ -9,15 +11,20 @@ let buttons = document.querySelectorAll("button")
      button.addEventListener("mousedown",computerTurn)
  })
 
+ // Calculates computer turn
+function computerTurn(e){
+    let moves = ["rock","paper","scissors"]
+    let compInput = moves[Math.floor(Math.random() * 3)];
+    return compInput
+}
+
 
 function playRound(e){
-    const currentButton = document.querySelector(`button[id=${e.toElement.id}`)
-    const scoreDisplay = document.querySelector(".score-display")
-    const currentMove = document.querySelector('.move-display')
+    let currentButton = document.querySelector(`button[id=${e.toElement.id}`)
+    // const scoreDisplay = document.querySelector(".score-display")
+    // const currentMove = document.querySelector('.move-display')
     let computerTurn = e.view.computerTurn();
 
-    console.log("comp turn",computerTurn)
-    console.log("human turn", currentButton.id)
 
     if(currentButton.id === computerTurn){
         currentMove.textContent = `You both made the same decision...continue`
@@ -39,12 +46,20 @@ function playRound(e){
         scoreDisplay.textContent = `Human - ${humanScore}, Computer - ${compScore} `;
         currentMove.textContent = `Human chose ${currentButton.id}, Computer chose ${computerTurn}`
     }
+
+    game(e,computerTurn)
 }
 
-// Calculates computer turn
-function computerTurn(e){
-    let moves = ["rock","paper","scissors"]
-    let compInput = moves[Math.floor(Math.random() * 3)];
-    return compInput
+function game(e,computerTurn){
+    let currentButton = document.querySelector(`button[id=${e.toElement.id}`)
+    if(humanScore === 5){
+        currentMove.textContent = `Human chose ${currentButton.id} and wins`
+    }else if (compScore === 5){
+        currentMove.textContent = `Computer chose ${computerTurn} and wins`
+    }
 }
+
+
+
+
 
